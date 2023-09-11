@@ -17,13 +17,27 @@ public class Menu {
         // Task 6
         printHashtags();
     }
+
+    public static String getOrdinalIndicator(int n){
+        switch (n){
+            case 1:
+                return "st";
+            case 2:
+                return "nd";
+            case 3:
+                return "rd";
+            default:
+                return "th"; // non-special case (not 1, 2 or 3)
+        }
+    }
+
     public static int[] readScores(){
         Scanner scanner = new Scanner(System.in);
         int[] input = new int[7];
 
         int temp_input;
         for (int i = 0; i < input.length; i++){
-            System.out.printf("Enter the score for the %d%s student ", i + 1, "th");
+            System.out.printf("Enter the score for the %d%s student ", i + 1, getOrdinalIndicator(i + 1));
             temp_input = scanner.nextInt();
             scanner.nextLine();
 
