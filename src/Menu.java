@@ -17,13 +17,27 @@ public class Menu {
         // Task 6
         printHashtags();
     }
+
+    public static String getOrdinalIndicator(int n){
+        switch (n){
+            case 1:
+                return "st";
+            case 2:
+                return "nd";
+            case 3:
+                return "rd";
+            default:
+                return "th"; // non-special case (not 1, 2 or 3)
+        }
+    }
+
     public static int[] readScores(){
         Scanner scanner = new Scanner(System.in);
         int[] input = new int[7];
 
         int temp_input;
         for (int i = 0; i < input.length; i++){
-            System.out.printf("Enter the score for the %d%s student ", i + 1, "th");
+            System.out.printf("Enter the score for the %d%s student ", i + 1, getOrdinalIndicator(i + 1));
             temp_input = scanner.nextInt();
             scanner.nextLine();
 
@@ -37,16 +51,23 @@ public class Menu {
 
         System.out.print("Thank you for your input. ");
         printScores(input);
+
         scanner.close();
         return input;
     }
 
     public static void printScores(int[] scores){
+        String output = ""; // string to be outputted at the end of the function
         System.out.println("Your entered scores are:");
+
         for (int i = 0; i < scores.length; i++) {
-            System.out.printf("%d, ", scores[i]);
+            output += scores[i]; // add a score to the output
+            if (i != (scores.length - 1)){
+                output += ", "; // if not last score, add a comma and a space
+            }
         }
-        System.out.println();
+
+        System.out.println(output);
     }
 
     public static void printMean(){
