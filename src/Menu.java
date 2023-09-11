@@ -51,16 +51,23 @@ public class Menu {
 
         System.out.print("Thank you for your input. ");
         printScores(input);
+
         scanner.close();
         return input;
     }
 
     public static void printScores(int[] scores){
+        String output = ""; // string to be outputted at the end of the function
         System.out.println("Your entered scores are:");
+
         for (int i = 0; i < scores.length; i++) {
-            System.out.printf("%d, ", scores[i]);
+            output += scores[i]; // add a score to the output
+            if (i != (scores.length - 1)){
+                output += ", "; // if not last score, add a comma and a space
+            }
         }
-        System.out.println();
+
+        System.out.println(output);
     }
 
     public static void printMean(){
