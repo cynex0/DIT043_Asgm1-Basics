@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Menu {
+    final static int MAX_STUDENTS = 7;
     public static void main(String[] args) {
         // Task 1
         int[] scores;
@@ -33,7 +34,7 @@ public class Menu {
 
     public static int[] readScores(){
         Scanner scanner = new Scanner(System.in);
-        int[] input = new int[7];
+        int[] input = new int[MAX_STUDENTS];
 
         int temp_input;
         for (int i = 0; i < input.length; i++){
