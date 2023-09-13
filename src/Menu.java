@@ -14,7 +14,7 @@ public class Menu {
         printTwoHighestScores();
         printTwoLowestScores();
         // Task 5
-        printHighestAndPos();
+        printHighestAndPos(scores);
         // Task 6
         printHashtags();
     }
@@ -82,8 +82,18 @@ public class Menu {
 
     }
 
-    public static void printHighestAndPos(){
+    public static void printHighestAndPos(int[]scores){
+        int highestScore = 0;
+        int position = 0;
 
+        for (int i = 0; i < scores.length; i++){
+            if (scores[i] > highestScore){
+                highestScore = scores[i];
+                position = i + 1;
+            }
+
+        } System.out.println("The highest score is " + highestScore + " and belongs to the " + position + getOrdinalIndicator(position)
+                + " student");
     }
 
     public static void printHashtags(){
