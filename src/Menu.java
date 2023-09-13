@@ -1,15 +1,17 @@
 import java.util.Scanner;
+import java.util.Locale;
 
 public class Menu {
     final static int MAX_STUDENTS = 7;
     public static void main(String[] args) {
         // Task 1
+        Locale.setDefault(Locale.ENGLISH);
         int[] scores;
         scores = readScores();
         // Task 2
 //        printScores(scores);
         // Task 3
-        printMean();
+        printMean(scores);
         // Task 4
         printTwoHighestScores();
         printTwoLowestScores();
@@ -71,8 +73,13 @@ public class Menu {
         System.out.println(output);
     }
 
-    public static void printMean(){
+    public static void printMean(int[] scores) {
+        double sum = 0.0f;
+        for (int i = 0; i < scores.length; i++) {
+            sum += scores[i];
+        }
 
+        System.out.printf("The mean is:  %.2f", (sum / scores.length));
     }
 
     public static void printTwoHighestScores(){
