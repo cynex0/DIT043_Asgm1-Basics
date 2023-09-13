@@ -96,7 +96,51 @@ public class Menu {
                 + " student");
     }
 
-    public static void printHashtags(){
+    public static String readPost(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Type your post: ");
+        String post = scanner.nextLine();
+        scanner.close();
 
+        return post;
+    }
+
+    public static String[] extractHashtags(String input){
+        String[] words = input.split(" ");
+        String[] hashtags = new String[words.length]; // max possible hashtags = length of post (if all hashtags)
+        int hashtag_i = 0; // counter for hashtag array
+
+        for (int i = 0; i < words.length; i++){
+            if (words[i].startsWith("#")){
+                hashtags[hashtag_i] = words[i];
+                hashtag_i++;
+            }
+        }
+        return hashtags;
+    }
+
+    public static void printHashtags(){
+        String post = readPost();
+        String[] hashtags = extractHashtags(post);
+
+        boolean hasHashtags = false;
+        for (int i = 0; i < hashtags.length; i++){
+            if (hashtags[i].startsWith("#")) {
+                hasHashtags = true;
+                break;
+            }
+        }
+
+        if (hasHashtags){
+            System.out.print("Hashtags found:"); // no space to allow easy printing of elements
+            for (int i = 0; hashtags[i].equals(""); i++){
+                if (hashtags[i].startsWith("#")){
+                    System.out.printf(" %s", hashtags[i]);
+                }
+            }
+            System.out.println();
+        } else {
+            System.out.println("No hashtags were typed.");
+        }
     }
 }
