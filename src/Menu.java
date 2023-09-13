@@ -10,7 +10,7 @@ public class Menu {
         // Task 2
 //        printScores(scores);
         // Task 3
-        double mean = printMean(scores);;
+        printMean(scores);
         // Task 4
         printTwoHighestScores();
         printTwoLowestScores();
@@ -52,16 +52,13 @@ public class Menu {
     }
 
     public static void printMean(int[] scores) {
-        double mean = calculateMean(scores);
-        System.out.printf("The mean is:  %2f", mean);
-    }
-    public static double calculateMean(int[] scores){
-        double sum= 0;
-    for (int i = 0; i < scores.length; i++){
-        sum += scores[i];
+        double sum = 0.0f;
+        for (int i = 0; i < scores.length; i++) {
+            sum += scores[i];
+        }
 
+        System.out.printf("The mean is:  %.2f", (sum / scores.length));
     }
-
 
     public static void printTwoHighestScores(){
 
