@@ -92,8 +92,9 @@ public class Menu {
                 position = i + 1;
             }
 
-        } System.out.println("The highest score is " + highestScore + " and belongs to the " + position + getOrdinalIndicator(position)
-                + " student");
+        }
+        System.out.println("The highest score is " + highestScore + " and belongs to the " + position +
+                getOrdinalIndicator(position) + " student");
     }
 
     public static String readPost(){
@@ -112,30 +113,36 @@ public class Menu {
 
         for (int i = 0; i < words.length; i++){
             if (words[i].startsWith("#")){
+                // put each hashtag into an array, starting from 0, in the same order
                 hashtags[hashtag_i] = words[i];
-                hashtag_i++;
+                hashtag_i++; // increase index
             }
         }
-        return hashtags;
+
+        return hashtags; // returns array of the same length as the post, hashtags in order, then empty strings
     }
 
     public static void printHashtags(){
         String post = readPost();
         String[] hashtags = extractHashtags(post);
 
+        // check if array has hashtags, since it can be empty if no tags in post
         boolean hasHashtags = false;
         for (int i = 0; i < hashtags.length; i++){
             if (hashtags[i].startsWith("#")) {
                 hasHashtags = true;
-                break;
+                break; // as soon as 1 hash is encountered, set flag to true and no need to check further
             }
         }
 
         if (hasHashtags){
             System.out.print("Hashtags found:"); // no space to allow easy printing of elements
-            for (int i = 0; hashtags[i].isEmpty(); i++){
-                if (hashtags[i].startsWith("#")){
-                    System.out.printf(" %s", hashtags[i]);
+            // loop until an empty element, array can have empty elements if less hashtags than words
+            for (int i = 0; i < hashtags.length; i++){
+                if (!hashtags[i].isEmpty()){
+                    System.out.printf(" %s", hashtags[i]); // if not empty, print
+                } else {
+                    break; // else stop loop (only empty strings after the tags in the array)
                 }
             }
             System.out.println();
