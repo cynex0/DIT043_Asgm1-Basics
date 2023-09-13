@@ -133,7 +133,7 @@ public class Menu {
 
         if (hasHashtags){
             System.out.print("Hashtags found:"); // no space to allow easy printing of elements
-            for (int i = 0; hashtags[i].equals(""); i++){
+            for (int i = 0; hashtags[i].isEmpty(); i++){
                 if (hashtags[i].startsWith("#")){
                     System.out.printf(" %s", hashtags[i]);
                 }
