@@ -1,8 +1,10 @@
 import java.util.Scanner;
+import java.util.Locale;
 
 public class Menu {
     public static void main(String[] args) {
         // Task 1
+        Locale.setDefault(Locale.ENGLISH);
         int[] scores;
         scores = readScores();
         // Task 2
@@ -50,7 +52,12 @@ public class Menu {
     }
 
     public static void printMean(){
-
+    double scoressum= 0;
+        for (int i =0, i < scores.length; i++){
+        scoressum+=scores[i];
+        }
+    double mean = scoressum / scores.lenght;
+     System.out.printf("The mean equals to %f", mean);
     }
 
     public static void printTwoHighestScores(){
