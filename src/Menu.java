@@ -9,7 +9,7 @@ public class Menu {
         int[] scores;
         scores = readScores();
         // Task 2
-//        printScores(scores);
+        printScores(scores);
         // Task 3
         printMean(scores);
         // Task 4
@@ -55,7 +55,8 @@ public class Menu {
         System.out.print("Thank you for your input. ");
         printScores(input);
 
-        scanner.close();
+        // closing scanner here causes a NoSuchElement exception when reading other inputs later, so closing is omitted
+        // scanner.close();
         return input;
     }
 
@@ -98,12 +99,57 @@ public class Menu {
                 highestScore = scores[i];
                 position = i + 1;
             }
+        }
 
-        } System.out.println("The highest score is " + highestScore + " and belongs to the " + position + getOrdinalIndicator(position)
-                + " student");
+        System.out.println("The highest score is " + highestScore + " and belongs to the " + position +
+                getOrdinalIndicator(position) + " student");
+    }
+
+    public static String readPost(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Type your post: ");
+        String post = scanner.nextLine();
+
+//        scanner.close();
+        return post;
+    }
+
+    public static String[] extractHashtags(String input){
+        String[] words = input.split(" ");
+        String[] hashtags = new String[words.length]; // max possible hashtags = length of post (if all hashtags)
+        int hashtag_i = 0; // counter for hashtag array
+
+        for (int i = 0; i < words.length; i++){
+            if (words[i].startsWith("#")){
+                // put each hashtag into an array, starting from 0, in the same order
+                hashtags[hashtag_i] = words[i];
+                hashtag_i++; // increase index
+            }
+        }
+        // returns array of the same length as the post, hashtags in order, then empty strings
+        return hashtags;
     }
 
     public static void printHashtags(){
+        String post = readPost();
+        String[] hashtags = extractHashtags(post);
 
+        if (hashtags[0] != null){ // if has at least 1 hashtag
+            System.out.print("Hashtags found:"); // no space to allow easy printing of elements
+
+            // loop until an empty element, array can have empty elements if less hashtags than words
+            for (int i = 0; i < hashtags.length; i++){
+                if (hashtags[i] != null){
+                    System.out.printf(" %s", hashtags[i]); // if not empty, print
+                } else {
+                    break; // else stop loop (only empty strings after the tags in the array)
+                }
+            }
+            System.out.println();
+        }
+        else {
+            System.out.println("No hashtags were typed.");
+        }
     }
 }
