@@ -7,7 +7,7 @@ public class Menu {
         int[] scores;
         scores = readScores();
         // Task 2
-//        printScores(scores);
+        printScores(scores);
         // Task 3
         printMean();
         // Task 4
@@ -53,7 +53,8 @@ public class Menu {
         System.out.print("Thank you for your input. ");
         printScores(input);
 
-        scanner.close();
+        // closing scanner here causes a NoSuchElement exception when reading other inputs later, so closing is omitted
+        // scanner.close();
         return input;
     }
 
@@ -91,18 +92,19 @@ public class Menu {
                 highestScore = scores[i];
                 position = i + 1;
             }
-
         }
+
         System.out.println("The highest score is " + highestScore + " and belongs to the " + position +
                 getOrdinalIndicator(position) + " student");
     }
 
     public static String readPost(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Type your post: ");
-        String post = scanner.nextLine();
-        scanner.close();
 
+        System.out.print("Type your post: ");
+        String post = scanner.nextLine();
+
+//        scanner.close();
         return post;
     }
 
@@ -118,35 +120,28 @@ public class Menu {
                 hashtag_i++; // increase index
             }
         }
-
-        return hashtags; // returns array of the same length as the post, hashtags in order, then empty strings
+        // returns array of the same length as the post, hashtags in order, then empty strings
+        return hashtags;
     }
 
     public static void printHashtags(){
         String post = readPost();
         String[] hashtags = extractHashtags(post);
 
-        // check if array has hashtags, since it can be empty if no tags in post
-        boolean hasHashtags = false;
-        for (int i = 0; i < hashtags.length; i++){
-            if (hashtags[i].startsWith("#")) {
-                hasHashtags = true;
-                break; // as soon as 1 hash is encountered, set flag to true and no need to check further
-            }
-        }
-
-        if (hasHashtags){
+        if (hashtags[0] != null){ // if has at least 1 hashtag
             System.out.print("Hashtags found:"); // no space to allow easy printing of elements
+
             // loop until an empty element, array can have empty elements if less hashtags than words
             for (int i = 0; i < hashtags.length; i++){
-                if (!hashtags[i].isEmpty()){
+                if (hashtags[i] != null){
                     System.out.printf(" %s", hashtags[i]); // if not empty, print
                 } else {
                     break; // else stop loop (only empty strings after the tags in the array)
                 }
             }
             System.out.println();
-        } else {
+        }
+        else {
             System.out.println("No hashtags were typed.");
         }
     }
