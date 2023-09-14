@@ -35,6 +35,7 @@ public class Menu {
 
     public static String getOrdinalIndicator(int n){
         switch (n){
+            // using ´:´ instead of ´->´ because returns wouldn't work w/ arrows
             case 1:
                 return "st";
             case 2:
@@ -73,7 +74,7 @@ public class Menu {
     }
 
     public static void printMenu(){
-        System.out.println("Welcome to the menu. Choose one of the options below:\n" +
+        System.out.print("Welcome to the menu. Choose one of the options below:\n" +
                 "\t1. Register new scores for students.\n" +
                 "\t2. Print all registered grades.\n" +
                 "\t3. Calculate the mean of the entered scores.\n" +
@@ -104,7 +105,7 @@ public class Menu {
             sum += scores[i];
         }
 
-        System.out.printf("The mean is:  %.2f", (sum / scores.length));
+        System.out.printf("The mean of the numbers is: %.2f%n", (sum / scores.length));
     }
 
     public static void printTwoHighestScores(){
