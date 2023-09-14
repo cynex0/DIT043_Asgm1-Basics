@@ -3,18 +3,18 @@ import java.util.Locale;
 
 public class Menu {
     final static int MAX_STUDENTS = 7;
+    static Scanner scanner; // create a global scanner for use in all functions
     public static void main(String[] args) {
         Locale.setDefault(Locale.ENGLISH);
-        Scanner menu_scanner = new Scanner(System.in);
-        
+        scanner = new Scanner(System.in);
         int[] scores = readScores();
         int choice;
         boolean running = true;
 
         while(running){
             printMenu();
-            choice = menu_scanner.nextInt();
-            menu_scanner.nextLine();
+            choice = scanner.nextInt();
+            scanner.nextLine();
             switch (choice){
                 case 1 -> scores = readScores();
                 case 2 -> printScores(scores);
@@ -29,7 +29,8 @@ public class Menu {
                 default -> System.out.println("Error - Invalid value. Please type between 1 and 7");
             }
         }
-        menu_scanner.close();
+
+        scanner.close();
         System.out.println("Thank you for using our grading system. Have a nice day!");
     }
 
@@ -48,7 +49,6 @@ public class Menu {
     }
 
     public static int[] readScores(){
-        Scanner scanner = new Scanner(System.in);
         int[] input = new int[MAX_STUDENTS];
 
         int temp_input;
@@ -68,20 +68,18 @@ public class Menu {
         System.out.print("Thank you for your input. ");
         printScores(input);
 
-        // closing scanner here causes a NoSuchElement exception when reading other inputs later, so closing is omitted
-        // scanner.close();
         return input;
     }
 
     public static void printMenu(){
         System.out.print("Welcome to the menu. Choose one of the options below:\n" +
-                "\t1. Register new scores for students.\n" +
-                "\t2. Print all registered grades.\n" +
-                "\t3. Calculate the mean of the entered scores.\n" +
-                "\t4. Find the two highest and two lowest scores.\n" +
-                "\t5. Find the highest score and its position.\n" +
-                "\t6. Collect hashtags from a post.\n" +
-                "\t7. To exit.\n\n" +
+                "1. Register new scores for students.\n" +
+                "2. Print all registered grades.\n" +
+                "3. Calculate the mean of the entered scores.\n" +
+                "4. Find the two highest and two lowest scores.\n" +
+                "5. Find the highest score and its position.\n" +
+                "6. Collect hashtags from a post.\n" +
+                "7. To exit.\n\n" +
                 "Type your option: ");
     }
 
@@ -102,7 +100,7 @@ public class Menu {
     public static void printMean(int[] scores) {
         double sum = 0.0f;
         for (int i = 0; i < scores.length; i++) {
-            sum += scores[i];
+            sum = sum + scores[i];
         }
 
         System.out.printf("The mean of the numbers is: %.2f%n", (sum / scores.length));
@@ -146,9 +144,6 @@ public class Menu {
         System.out.println("The second lowest score is " + lowestScore2);
     }
 
-
-
-
     public static void printHighestAndPos(int[]scores){
         int highestScore = 0;
         int position = 0;
@@ -165,12 +160,9 @@ public class Menu {
     }
 
     public static String readPost(){
-        Scanner scanner = new Scanner(System.in);
-
         System.out.print("Type your post: ");
         String post = scanner.nextLine();
 
-//        scanner.close();
         return post;
     }
 
