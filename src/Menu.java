@@ -4,25 +4,38 @@ import java.util.Locale;
 public class Menu {
     final static int MAX_STUDENTS = 7;
     public static void main(String[] args) {
-        // Task 1
         Locale.setDefault(Locale.ENGLISH);
-        int[] scores;
-        scores = readScores();
-        // Task 2
-        printScores(scores);
-        // Task 3
-        printMean(scores);
-        // Task 4
-        printTwoHighestScores(scores);
-        printTwoLowestScores(scores);
-        // Task 5
-        printHighestAndPos(scores);
-        // Task 6
-        printHashtags();
+        Scanner menu_scanner = new Scanner(System.in);
+        
+        int[] scores = readScores();
+        int choice;
+        boolean running = true;
+
+        while(running){
+            printMenu();
+            choice = menu_scanner.nextInt();
+            menu_scanner.nextLine();
+            switch (choice){
+                case 1 -> scores = readScores();
+                case 2 -> printScores(scores);
+                case 3 -> printMean(scores);
+                case 4 -> {
+                    printTwoHighestScores(scores);
+                    printTwoLowestScores(scores);
+                }
+                case 5 -> printHighestAndPos(scores);
+                case 6 -> printHashtags();
+                case 7 -> running = false;
+                default -> System.out.println("Error - Invalid value. Please type between 1 and 7");
+            }
+        }
+        menu_scanner.close();
+        System.out.println("Thank you for using our grading system. Have a nice day!");
     }
 
     public static String getOrdinalIndicator(int n){
         switch (n){
+            // using ´:´ instead of ´->´ because returns wouldn't work w/ arrows
             case 1:
                 return "st";
             case 2:
@@ -60,6 +73,18 @@ public class Menu {
         return input;
     }
 
+    public static void printMenu(){
+        System.out.print("Welcome to the menu. Choose one of the options below:\n" +
+                "\t1. Register new scores for students.\n" +
+                "\t2. Print all registered grades.\n" +
+                "\t3. Calculate the mean of the entered scores.\n" +
+                "\t4. Find the two highest and two lowest scores.\n" +
+                "\t5. Find the highest score and its position.\n" +
+                "\t6. Collect hashtags from a post.\n" +
+                "\t7. To exit.\n\n" +
+                "Type your option: ");
+    }
+
     public static void printScores(int[] scores){
         String output = ""; // string to be outputted at the end of the function
         System.out.println("Your entered scores are:");
@@ -80,54 +105,45 @@ public class Menu {
             sum += scores[i];
         }
 
-        System.out.printf("The mean is:  %.2f", (sum / scores.length));
+        System.out.printf("The mean of the numbers is: %.2f%n", (sum / scores.length));
     }
 
     public static void printTwoHighestScores(int[]scores){
-
-            int highestScore1 = 0;
-
-            for (int i = 0; i < scores.length; i++){
-                if (scores[i] > highestScore1){
-                    highestScore1 = scores[i];
-
-                }
+        int highestScore1 = 0;
+        for (int i = 0; i < scores.length; i++){
+            if (scores[i] > highestScore1){
+                highestScore1 = scores[i];
             }
-            int highestScore2 = 0;
-
-
-            for (int i = 0; i < scores.length; i++){
-                if (scores[i] > highestScore2 && highestScore2 < highestScore1){
+        }
+  
+        int highestScore2 = 0;
+        for (int i = 0; i < scores.length; i++){
+            if (scores[i] > highestScore2 && highestScore2 < highestScore1){
                 highestScore2 = scores[i];
-
             }
         }
-
-            System.out.println("The highest score is " + highestScore1);
-            System.out.println("The second highest score is " + highestScore2);
+      
+        System.out.println("The highest score is " + highestScore1);
+        System.out.println("The second highest score is " + highestScore2);
     }
+  
     public static void printTwoLowestScores(int []scores){
-
-        int LowestScore1 = 0;
-
+        int lowestScore1 = 0;
         for (int i = 0; i < scores.length; i++){
-            if (scores[i] < LowestScore1){
-                LowestScore1 = scores[i];
-
+            if (scores[i] < lowestScore1){
+                lowestScore1 = scores[i];
             }
         }
-        int LowestScore2 = 0;
-
-
+      
+        int lowestScore2 = 0;
         for (int i = 0; i < scores.length; i++){
-            if (scores[i] > LowestScore2 && LowestScore2 > LowestScore1){
-                LowestScore2 = scores[i];
-
+            if (scores[i] > lowestScore2 && lowestScore2 > lowestScore1){
+                lowestScore2 = scores[i];
             }
         }
-
-        System.out.println("The lowest score is " + LowestScore1);
-        System.out.println("The second lowest score is " + LowestScore2);
+      
+        System.out.println("The lowest score is " + lowestScore1);
+        System.out.println("The second lowest score is " + lowestScore2);
     }
 
 
