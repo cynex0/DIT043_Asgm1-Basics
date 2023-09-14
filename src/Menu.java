@@ -35,7 +35,7 @@ public class Menu {
 
     public static String getOrdinalIndicator(int n){
         switch (n){
-            // using ´:´ instead of ´->´ because returns wouldn't work w/ arrows
+            // using ":" instead of "->" because returns wouldn't work w/ arrows
             case 1:
                 return "st";
             case 2:
