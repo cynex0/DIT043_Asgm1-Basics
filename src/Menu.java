@@ -121,8 +121,8 @@ public class Menu {
             }
         }
       
-        System.out.println("The highest score is " + highestScore1);
-        System.out.println("The second highest score is " + highestScore2);
+        System.out.printf("The two highest scores provided are %d, and %d", highestScore1, highestScore2);
+
     }
   
     public static void printTwoLowestScores(int []scores){
@@ -139,9 +139,8 @@ public class Menu {
                 lowestScore2 = scores[i];
             }
         }
-      
-        System.out.println("The lowest score is " + lowestScore1);
-        System.out.println("The second lowest score is " + lowestScore2);
+
+        System.out.printf("The two lowest scores provided are %d, and %d", lowestScore1,lowestScore2);
     }
 
     public static void printHighestAndPos(int[]scores){
