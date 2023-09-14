@@ -103,7 +103,7 @@ public class Menu {
             sum = sum + scores[i];
         }
 
-        System.out.printf("The mean of the numbers is: %.2f%n", (sum / scores.length));
+        System.out.printf("The mean of the numbers is %.2f%n", (sum / scores.length));
     }
 
     public static void printTwoHighestScores(int[]scores){
