@@ -6,7 +6,7 @@ public class Menu {
     public static void main(String[] args) {
         Locale.setDefault(Locale.ENGLISH);
         Scanner menu_scanner = new Scanner(System.in);
-        // Task 1
+        
         int[] scores = readScores();
         int choice;
         boolean running = true;
@@ -20,8 +20,8 @@ public class Menu {
                 case 2 -> printScores(scores);
                 case 3 -> printMean(scores);
                 case 4 -> {
-                    printTwoHighestScores();
-                    printTwoLowestScores();
+                    printTwoHighestScores(scores);
+                    printTwoLowestScores(scores);
                 }
                 case 5 -> printHighestAndPos(scores);
                 case 6 -> printHashtags();
@@ -108,12 +108,46 @@ public class Menu {
         System.out.printf("The mean of the numbers is: %.2f%n", (sum / scores.length));
     }
 
-    public static void printTwoHighestScores(){
-
+    public static void printTwoHighestScores(int[]scores){
+        int highestScore1 = 0;
+        for (int i = 0; i < scores.length; i++){
+            if (scores[i] > highestScore1){
+                highestScore1 = scores[i];
+            }
+        }
+  
+        int highestScore2 = 0;
+        for (int i = 0; i < scores.length; i++){
+            if (scores[i] > highestScore2 && highestScore2 < highestScore1){
+                highestScore2 = scores[i];
+            }
+        }
+      
+        System.out.println("The highest score is " + highestScore1);
+        System.out.println("The second highest score is " + highestScore2);
     }
-    public static void printTwoLowestScores(){
-
+  
+    public static void printTwoLowestScores(int []scores){
+        int lowestScore1 = 0;
+        for (int i = 0; i < scores.length; i++){
+            if (scores[i] < lowestScore1){
+                lowestScore1 = scores[i];
+            }
+        }
+      
+        int lowestScore2 = 0;
+        for (int i = 0; i < scores.length; i++){
+            if (scores[i] > lowestScore2 && lowestScore2 > lowestScore1){
+                lowestScore2 = scores[i];
+            }
+        }
+      
+        System.out.println("The lowest score is " + lowestScore1);
+        System.out.println("The second lowest score is " + lowestScore2);
     }
+
+
+
 
     public static void printHighestAndPos(int[]scores){
         int highestScore = 0;
