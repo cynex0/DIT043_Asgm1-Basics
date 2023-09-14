@@ -20,8 +20,8 @@ public class Menu {
                 case 2 -> printScores(scores);
                 case 3 -> printMean(scores);
                 case 4 -> {
-                    printTwoHighestScores(scores);
                     printTwoLowestScores(scores);
+                    printTwoHighestScores(scores);
                 }
                 case 5 -> printHighestAndPos(scores);
                 case 6 -> printHashtags();
