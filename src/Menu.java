@@ -4,21 +4,33 @@ import java.util.Locale;
 public class Menu {
     final static int MAX_STUDENTS = 7;
     public static void main(String[] args) {
-        // Task 1
         Locale.setDefault(Locale.ENGLISH);
-        int[] scores;
-        scores = readScores();
-        // Task 2
-        printScores(scores);
-        // Task 3
-        printMean(scores);
-        // Task 4
-        printTwoHighestScores();
-        printTwoLowestScores();
-        // Task 5
-        printHighestAndPos(scores);
-        // Task 6
-        printHashtags();
+        Scanner menu_scanner = new Scanner(System.in);
+        // Task 1
+        int[] scores = readScores();
+        int choice;
+        boolean running = true;
+
+        while(running){
+            printMenu();
+            choice = menu_scanner.nextInt();
+            menu_scanner.nextLine();
+            switch (choice){
+                case 1 -> scores = readScores();
+                case 2 -> printScores(scores);
+                case 3 -> printMean(scores);
+                case 4 -> {
+                    printTwoHighestScores();
+                    printTwoLowestScores();
+                }
+                case 5 -> printHighestAndPos(scores);
+                case 6 -> printHashtags();
+                case 7 -> running = false;
+                default -> System.out.println("Error - Invalid value. Please type between 1 and 7");
+            }
+        }
+        menu_scanner.close();
+        System.out.println("Thank you for using our grading system. Have a nice day!");
     }
 
     public static String getOrdinalIndicator(int n){
@@ -58,6 +70,18 @@ public class Menu {
         // closing scanner here causes a NoSuchElement exception when reading other inputs later, so closing is omitted
         // scanner.close();
         return input;
+    }
+
+    public static void printMenu(){
+        System.out.println("Welcome to the menu. Choose one of the options below:\n" +
+                "\t1. Register new scores for students.\n" +
+                "\t2. Print all registered grades.\n" +
+                "\t3. Calculate the mean of the entered scores.\n" +
+                "\t4. Find the two highest and two lowest scores.\n" +
+                "\t5. Find the highest score and its position.\n" +
+                "\t6. Collect hashtags from a post.\n" +
+                "\t7. To exit.\n\n" +
+                "Type your option: ");
     }
 
     public static void printScores(int[] scores){
