@@ -1,9 +1,8 @@
-import java.util.Scanner;
 import java.util.Locale;
 
 public class Menu {
     final static int MAX_STUDENTS = 7;
-    static Scanner scanner = new Scanner(System.in); // create a global scanner for use in all functions
+  
     public static void main(String[] args) {
         Locale.setDefault(Locale.ENGLISH);
         int[] scores = readScores();
@@ -12,8 +11,7 @@ public class Menu {
 
         while(isRunning){
             printMenu();
-            choice = scanner.nextInt();
-            scanner.nextLine();
+            choice = IOScanner.readInt("Type your option: ");
             switch (choice){
                 case 1 -> scores = readScores();
                 case 2 -> printScores(scores);
@@ -29,8 +27,29 @@ public class Menu {
             }
         }
 
-        scanner.close();
-        System.out.println("Thank you for using our grading system. Have a nice day!");
+        IOScanner.finish("Thank you for using our grading system. Have a nice day!");
+    }
+
+    public static int[] readScores(){
+        int[] input = new int[MAX_STUDENTS];
+
+        int tempInput;
+        for (int i = 0; i < input.length; i++){
+            temp_input = IOScanner.readInt("Enter the score for the " + (i + 1) + getOrdinalIndicator(i + 1)
+                                            + " student ");
+
+            if ((tempInput >= 0) && (tempInput <= 100)){
+                input[i] = tempInput;
+            } else {
+                System.out.println("Error - Input out of bound. Score can only be between 0  and 100.");
+                i--; // decrease the value of the control variable to not skip the i-th element in case of a wrong input
+            }
+        }
+
+        System.out.print("Thank you for your input. ");
+        Menu.printScores(input);
+
+        return input;
     }
 
     public static String getOrdinalIndicator(int n){
@@ -47,29 +66,6 @@ public class Menu {
         }
     }
 
-    public static int[] readScores(){
-        int[] input = new int[MAX_STUDENTS];
-
-        int tempInput;
-        for (int i = 0; i < input.length; i++){
-            System.out.printf("Enter the score for the %d%s student ", i + 1, getOrdinalIndicator(i + 1));
-            tempInput = scanner.nextInt();
-            scanner.nextLine();
-
-            if ((tempInput >= 0) && (tempInput <= 100)){
-                input[i] = tempInput;
-            } else {
-                System.out.println("Error - Input out of bound. Score can only be between 0  and 100.");
-                i--; // decrease the value of the control variable to not skip the i-th element in case of a wrong input
-            }
-        }
-
-        System.out.print("Thank you for your input. ");
-        printScores(input);
-
-        return input;
-    }
-
     public static void printMenu(){
         System.out.print("Welcome to the menu. Choose one of the options below:\n" +
                 "1. Register new scores for students.\n" +
@@ -78,8 +74,7 @@ public class Menu {
                 "4. Find the two highest and two lowest scores.\n" +
                 "5. Find the highest score and its position.\n" +
                 "6. Collect hashtags from a post.\n" +
-                "7. To exit.\n\n" +
-                "Type your option: ");
+                "7. To exit.\n\n");
     }
 
     public static void printScores(int[] scores){
@@ -153,15 +148,7 @@ public class Menu {
                 getOrdinalIndicator(position) + " student");
     }
 
-    public static String readPost(){
-        System.out.print("Type your post: ");
-        String post = scanner.nextLine();
-
-        return post;
-    }
-
-    public static String[] extractHashtags(String input){
-        String[] words = input.split(" ");
+    public static String[] extractHashtags(String[] words){
         String[] hashtags = new String[words.length]; // max possible hashtags = length of post (if all hashtags)
         int hashtag_i = 0; // counter for hashtag array
 
@@ -177,8 +164,8 @@ public class Menu {
     }
 
     public static void printHashtags(){
-        String post = readPost();
-        String[] hashtags = extractHashtags(post);
+        String[] postWords = IOScanner.readWordArray("Type your post: ");
+        String[] hashtags = extractHashtags(postWords);
 
         if (hashtags[0] != null){ // if has at least 1 hashtag
             System.out.print("Hashtags found:"); // no space to allow easy printing of elements
