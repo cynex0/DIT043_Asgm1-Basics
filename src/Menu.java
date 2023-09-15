@@ -8,9 +8,9 @@ public class Menu {
         Locale.setDefault(Locale.ENGLISH);
         int[] scores = readScores();
         int choice;
-        boolean running = true;
+        boolean isRunning = true;
 
-        while(running){
+        while(isRunning){
             printMenu();
             choice = scanner.nextInt();
             scanner.nextLine();
@@ -24,7 +24,7 @@ public class Menu {
                 }
                 case 5 -> printHighestAndPos(scores);
                 case 6 -> printHashtags();
-                case 7 -> running = false;
+                case 7 -> isRunning = false;
                 default -> System.out.println("Error - Invalid value. Please type between 1 and 7");
             }
         }
@@ -50,14 +50,14 @@ public class Menu {
     public static int[] readScores(){
         int[] input = new int[MAX_STUDENTS];
 
-        int temp_input;
+        int tempInput;
         for (int i = 0; i < input.length; i++){
             System.out.printf("Enter the score for the %d%s student ", i + 1, getOrdinalIndicator(i + 1));
-            temp_input = scanner.nextInt();
+            tempInput = scanner.nextInt();
             scanner.nextLine();
 
-            if ((temp_input >= 0) && (temp_input <= 100)){
-                input[i] = temp_input;
+            if ((tempInput >= 0) && (tempInput <= 100)){
+                input[i] = tempInput;
             } else {
                 System.out.println("Error - Input out of bound. Score can only be between 0  and 100.");
                 i--; // decrease the value of the control variable to not skip the i-th element in case of a wrong input
