@@ -13,8 +13,8 @@ public class Menu {
         // Task 3
         printMean(scores);
         // Task 4
-        printTwoHighestScores();
-        printTwoLowestScores();
+        printTwoHighestScores(scores);
+        printTwoLowestScores(scores);
         // Task 5
         printHighestAndPos(scores);
         // Task 6
@@ -83,12 +83,55 @@ public class Menu {
         System.out.printf("The mean is:  %.2f", (sum / scores.length));
     }
 
-    public static void printTwoHighestScores(){
+    public static void printTwoHighestScores(int[]scores){
 
-    }
-    public static void printTwoLowestScores(){
+            int highestScore1 = 0;
 
+            for (int i = 0; i < scores.length; i++){
+                if (scores[i] > highestScore1){
+                    highestScore1 = scores[i];
+
+                }
+            }
+            int highestScore2 = 0;
+
+
+            for (int i = 0; i < scores.length; i++){
+                if (scores[i] > highestScore2 && highestScore2 < highestScore1){
+                highestScore2 = scores[i];
+
+            }
+        }
+
+            System.out.println("The highest score is " + highestScore1);
+            System.out.println("The second highest score is " + highestScore2);
     }
+    public static void printTwoLowestScores(int []scores){
+
+        int LowestScore1 = 0;
+
+        for (int i = 0; i < scores.length; i++){
+            if (scores[i] < LowestScore1){
+                LowestScore1 = scores[i];
+
+            }
+        }
+        int LowestScore2 = 0;
+
+
+        for (int i = 0; i < scores.length; i++){
+            if (scores[i] > LowestScore2 && LowestScore2 > LowestScore1){
+                LowestScore2 = scores[i];
+
+            }
+        }
+
+        System.out.println("The lowest score is " + LowestScore1);
+        System.out.println("The second lowest score is " + LowestScore2);
+    }
+
+
+
 
     public static void printHighestAndPos(int[]scores){
         int highestScore = 0;
