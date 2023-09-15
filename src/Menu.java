@@ -114,6 +114,8 @@ public class Menu {
             if (scores[i] >= highestScore){
                 secondHighestScore = highestScore;
                 highestScore = scores[i];
+            } else if (scores[i] > secondHighestScore) { // if a new second highest after the highest
+                secondHighestScore = scores[i];
             }
         }
   
@@ -129,6 +131,8 @@ public class Menu {
             if (scores[i] <= lowestScore){
                 secondLowestScore = lowestScore;
                 lowestScore = scores[i];
+            } else if (scores [i] < secondLowestScore) {
+                secondLowestScore = scores[i];
             }
         }
 
