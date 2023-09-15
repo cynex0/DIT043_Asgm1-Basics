@@ -3,10 +3,9 @@ import java.util.Locale;
 
 public class Menu {
     final static int MAX_STUDENTS = 7;
-    static Scanner scanner; // create a global scanner for use in all functions
+    static Scanner scanner = new Scanner(System.in); // create a global scanner for use in all functions
     public static void main(String[] args) {
         Locale.setDefault(Locale.ENGLISH);
-        scanner = new Scanner(System.in);
         int[] scores = readScores();
         int choice;
         boolean running = true;
