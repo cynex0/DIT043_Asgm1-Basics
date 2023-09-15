@@ -107,40 +107,32 @@ public class Menu {
     }
 
     public static void printTwoHighestScores(int[]scores){
-        int highestScore1 = 0;
+        int highestScore = 0;
+        int secondHighestScore = 0; // set to 0 as it is the lowest possible score
+
         for (int i = 0; i < scores.length; i++){
-            if (scores[i] > highestScore1){
-                highestScore1 = scores[i];
+            if (scores[i] > highestScore){
+                secondHighestScore = highestScore;
+                highestScore = scores[i];
             }
         }
   
-        int highestScore2 = 0;
-        for (int i = 0; i < scores.length; i++){
-            if (scores[i] > highestScore2 && highestScore2 < highestScore1){
-                highestScore2 = scores[i];
-            }
-        }
-      
-        System.out.printf("The two highest scores provided are %d, and %d", highestScore1, highestScore2);
+        System.out.printf("The two highest scores provided are %d, and %d", highestScore, secondHighestScore);
 
     }
   
     public static void printTwoLowestScores(int []scores){
-        int lowestScore1 = 0;
+        int lowestScore = 100;
+        int secondLowestScore = 100; // set to 100 as it is the highest possible score
+
         for (int i = 0; i < scores.length; i++){
-            if (scores[i] < lowestScore1){
-                lowestScore1 = scores[i];
-            }
-        }
-      
-        int lowestScore2 = 0;
-        for (int i = 0; i < scores.length; i++){
-            if (scores[i] > lowestScore2 && lowestScore2 > lowestScore1){
-                lowestScore2 = scores[i];
+            if (scores[i] < lowestScore){
+                secondLowestScore = lowestScore;
+                lowestScore = scores[i];
             }
         }
 
-        System.out.printf("The two lowest scores provided are %d, and %d", lowestScore1,lowestScore2);
+        System.out.printf("The two lowest scores provided are %d, and %d", lowestScore,secondLowestScore);
     }
 
     public static void printHighestAndPos(int[]scores){
