@@ -35,7 +35,7 @@ public class Menu {
 
         int tempInput;
         for (int i = 0; i < input.length; i++){
-            temp_input = IOScanner.readInt("Enter the score for the " + (i + 1) + getOrdinalIndicator(i + 1)
+            tempInput = IOScanner.readInt("Enter the score for the " + (i + 1) + getOrdinalIndicator(i + 1)
                                             + " student ");
 
             if ((tempInput >= 0) && (tempInput <= 100)){
@@ -78,17 +78,15 @@ public class Menu {
     }
 
     public static void printScores(int[] scores){
-        String output = ""; // string to be outputted at the end of the function
         System.out.println("Your entered scores are:");
 
         for (int i = 0; i < scores.length; i++) {
-            output += scores[i]; // add a score to the output
+            System.out.print(scores[i]);
             if (i != (scores.length - 1)){
-                output += ", "; // if not last score, add a comma and a space
+                System.out.print(", "); // if not last score, add a comma and a space
             }
         }
-
-        System.out.println(output);
+        System.out.println();
     }
 
     public static void printMean(int[] scores) {
@@ -164,7 +162,8 @@ public class Menu {
     }
 
     public static void printHashtags(){
-        String[] postWords = IOScanner.readWordArray("Type your post: ");
+        String post = IOScanner.readString("Type your post: ");
+        String[] postWords = post.split(" ");
         String[] hashtags = extractHashtags(postWords);
 
         if (hashtags[0] != null){ // if has at least 1 hashtag
