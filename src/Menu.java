@@ -111,7 +111,7 @@ public class Menu {
         int secondHighestScore = 0; // set to 0 as it is the lowest possible score
 
         for (int i = 0; i < scores.length; i++){
-            if (scores[i] > highestScore){
+            if (scores[i] >= highestScore){
                 secondHighestScore = highestScore;
                 highestScore = scores[i];
             }
@@ -126,7 +126,7 @@ public class Menu {
         int secondLowestScore = 100; // set to 100 as it is the highest possible score
 
         for (int i = 0; i < scores.length; i++){
-            if (scores[i] < lowestScore){
+            if (scores[i] <= lowestScore){
                 secondLowestScore = lowestScore;
                 lowestScore = scores[i];
             }
