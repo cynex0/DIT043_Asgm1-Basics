@@ -27,7 +27,7 @@ public class Menu {
             }
         }
 
-        IOScanner.finish();
+        IOScanner.finish("Thank you for using our grading system. Have a nice day!");
     }
 
     public static int[] readScores(){
